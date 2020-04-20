@@ -14,7 +14,10 @@ app.use('/public', express.static(process.cwd() + '/public'));
 
 app.post('/api/fileanalyse', upload.single('upfile'), function (req, res, next) {
   // req.file is the `upfile` file
-  
+  const fileName = req.file.originalname;
+  const size = req.file.size;
+  console.log('file', {fileName, size})
+  res.json({fileName, size});
 })
 
 app.get('/', function (req, res) {
